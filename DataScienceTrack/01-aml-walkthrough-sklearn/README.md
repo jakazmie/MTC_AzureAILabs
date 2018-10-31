@@ -18,8 +18,8 @@ You can use your workstation or Azure Data Science Virtual Machine as your lab e
 
  https://portal.azure.com/#create/microsoft-dsvm.linux-data-science-vm-ubuntulinuxdsvmubuntu
 
-2. When your VM is ready use Azure Portal Cloud Shell to install and configure AML Widgets. This step is a temporary workaround.
-The next release of DSVM will include pre-installed AML Widgets.
+2. When your VM is ready use Azure Portal Cloud Shell to install and configure AML Widgets and lab dependencies. This step is a temporary workaround.
+The next release of DSVM will include pre-installed AML Widgets and missing libraries..
 
 ```
 # Logon to your VM
@@ -37,7 +37,10 @@ jupyter nbextension enable --py azureml.train.widgets
 
 # Restart Jupyter Hub
 sudo systemctl restart jupyterhub
-```
+
+# Install scikit-image
+conda install scikit-image
+'''
 
 3. Clone the labs
 ```
