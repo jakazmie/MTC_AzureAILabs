@@ -1,6 +1,6 @@
 # Azure Machine Learning service End-To-End Walkthrough
 
-The goal of the lab is to introduce key components and features of Azure Machine Learning service. During the lab
+The goal of this series of labs is to introduce key components and features of Azure Machine Learning service. During the lab
 you will go through a full Machine Learning workflow from data preparation, through model training, to model operationalization.
 
 
