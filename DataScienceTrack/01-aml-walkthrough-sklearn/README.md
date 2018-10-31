@@ -63,7 +63,7 @@ jupyter notebook
    - Create a new resource group for your VM
    - Use **DS3_v2** or better as a VM type. Although, the labs will run on other configurations this is the minimum configuration we recommend. 
    - Choose *username and password* as the authentication type. 
-   - Use default values for all other parameters.
+   - Use the default values for all other parameters.
 
  https://portal.azure.com/#create/microsoft-dsvm.linux-data-science-vm-ubuntulinuxdsvmubuntu
 
