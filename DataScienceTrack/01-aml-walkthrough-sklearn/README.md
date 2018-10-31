@@ -42,6 +42,9 @@ sudo systemctl restart jupyterhub
 conda install scikit-image
 '''
 
+# Install h5py
+conda install h5py
+
 3. Clone the labs
 ```
 # Clone the labs in the notebooks folder
