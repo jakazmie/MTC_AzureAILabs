@@ -1,10 +1,6 @@
 
 import os
-import tensorflow as tf
-from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout, Flatten, Input
-from tensorflow.keras.regularizers import l1_l2
+import argparse
 
 from azureml.core import Run
 
@@ -12,33 +8,17 @@ import numpy as np
 import random
 import h5py
 
-
-# Create custom callback to track accuracy measures in AML Experiment
-class RunCallback(tf.keras.callbacks.Callback):
-    def __init__(self, run):
-        self.run = run
-        
-    def on_epoch_end(self, batch, logs={}):
-        self.run.log(name="training_acc", value=float(logs.get('acc')))
-        self.run.log(name="validation_acc", value=float(logs.get('val_acc')))
+from sklearn.linear_model import LogisticRegression
+from sklearn.externals import joblib
 
 
-# Define network
-def fcn_classifier(input_shape=(2048,), units=512, classes=6,  l1=0.01, l2=0.01):
-    features = Input(shape=input_shape)
-    x = Dense(units, activation='relu')(features)
-    x = Dropout(0.5)(x)
-    y = Dense(classes, activation='softmax', kernel_regularizer=l1_l2(l1=l1, l2=l2))(x)
-    model = Model(inputs=features, outputs=y)
-    model.compile(optimizer='adadelta', loss='categorical_crossentropy', metrics=['accuracy'])
-    return model
 
 # Training regime
 def train_evaluate(run):
    
     print("Loading bottleneck features")
-    train_file_name = os.path.join(FLAGS.data_folder, FLAGS.training_file_name)
-    valid_file_name = os.path.join(FLAGS.data_folder, FLAGS.validation_file_name)
+    train_file_name = os.path.join(args.data_folder, args.training_file_name)
+    valid_file_name = os.path.join(args.data_folder, args.validation_file_name)
     
     # Load bottleneck training features and labels
     with h5py.File(train_file_name, "r") as hfile:
@@ -51,48 +31,76 @@ def train_evaluate(run):
         valid_features = np.array(hfile.get('features'))
         valid_labels = np.array(hfile.get('labels'))
         
-    # Create a network
-    model = fcn_classifier(input_shape=(512,), units=FLAGS.units, l1=FLAGS.l1, l2=FLAGS.l2)
+    # Conver one-hot labels to integers
+    y_train = np.argmax(train_labels, axis=1)
+    y_valid = np.argmax(valid_labels, axis=1)
     
-    run_callback = RunCallback(run)
+    # Train logistics regresssion model
+    print("Starting training on")
+    print("  Features:", train_features.shape)
+    print("  Labels:", y_train.shape)
+    clf = LogisticRegression(
+        C=1.0/args.reg, 
+        multi_class='multinomial',
+        solver='lbfgs',
+        random_state=42)
+    clf.fit(train_features, y_train)
     
-    # Start training
-    print("Starting training")
-    model.fit(train_features, train_labels,
-          batch_size=FLAGS.batch_size,
-          epochs=FLAGS.epochs,
-          shuffle=True,
-          validation_data=(valid_features, valid_labels),
-          callbacks=[run_callback])
+    
+    # Validate
+    print("Starting validation")
+    y_hat = clf.predict(valid_features)
+    
+    # Calculate accuracy 
+    acc = np.average(y_hat == y_valid)
+    print('Validatin accuracy is:', acc)
+    
+    # Log to AML Experiment
+    run.log('regularization_rate', np.float(args.reg))
+    run.log('validation_acc', np.float(acc))
           
     # Save the trained model to outp'uts which is a standard folder expected by AML
-    print("Training completed.")
+    model_file = 'aerial_sklearn.pkl'
+    model_file = os.path.join('outputs', model_file)
+    print("Saving the model to: ", model_file)
     os.makedirs('outputs', exist_ok=True)
-    model_file = os.path.join('outputs', 'aerial_classifier.h5')
-    print("Saving model to: {}".format(model_file))
-    model.save(model_file)
-    model_weights = os.path.join('outputs', 'aerial_classifier_weights.h5')
-    print("Saving weights of the model to {}".format(model_weights))
-    model.save_weights(model_weights, save_format='h5')
+    joblib.dump(value=clf, filename=model_file)
     
 
-FLAGS = tf.app.flags.FLAGS
-
-# Default global parameters
-tf.app.flags.DEFINE_integer('batch_size', 32, "Number of images per batch")
-tf.app.flags.DEFINE_integer('epochs', 10, "Number of epochs to train")
-tf.app.flags.DEFINE_integer('units', 512, "Number of epochs to train")
-tf.app.flags.DEFINE_float('l1', 0.01, "l1 regularization")
-tf.app.flags.DEFINE_float('l2', 0.01, "l2 regularization")
-tf.app.flags.DEFINE_string('data_folder', './bottleneck', "Folder with bottleneck features and labels")
-tf.app.flags.DEFINE_string('training_file_name', 'aerial_bottleneck_train.h5', "Training file name")
-tf.app.flags.DEFINE_string('validation_file_name', 'aerial_bottleneck_valid.h5', "Validation file name")
-
-def main(argv=None):
-    # get hold of the current run
-    run = Run.get_submitted_run()
-    train_evaluate(run)
   
 
 if __name__ == '__main__':
-    tf.app.run()
+    parser = argparse.ArgumentParser("Training, evaluation worklfow")
+
+    ### Model parameters
+    
+    parser.add_argument(
+        '--data-folder',
+        type=str,
+        default = './bottleneck',
+        help='Folder with bottleneck features and labels')
+
+    parser.add_argument(
+        '--training-file-name',
+        type=str,
+        default = 'aerial_bottleneck_train.h5',
+        help='Training file name')
+
+    parser.add_argument(
+        '--validation-file-name',
+        type=str,
+        default = 'aerial_bottleneck_valid.h5',
+        help='Validation file name')
+
+    parser.add_argument(
+        '--regularization', 
+        type=float, dest='reg', 
+        default=0.01, 
+        help='regularization rate')
+    
+    args = parser.parse_args()
+    
+    # get hold of the current run
+    run = Run.get_submitted_run()
+    train_evaluate(run)
+    
