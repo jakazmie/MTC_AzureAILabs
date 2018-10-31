@@ -59,7 +59,7 @@ jupyter notebook
 
 ### To set up Azure Data Science Virtual Machine
 
-1. Follow the below link to provision Data Science Virtual Machine. 
+1. Follow the below link to provision **Ubuntu** Data Science Virtual Machine. 
    - Create a new resource group for your VM
    - Use **DS3_v2** or better as a VM type. Although, the labs will run on other configurations this is the minimum configuration we recommend. 
    - Choose *username and password* as the authentication type. 
