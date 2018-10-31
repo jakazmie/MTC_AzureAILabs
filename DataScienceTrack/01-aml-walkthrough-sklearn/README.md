@@ -68,7 +68,7 @@ jupyter notebook
  https://portal.azure.com/#create/microsoft-dsvm.linux-data-science-vm-ubuntulinuxdsvmubuntu
 
 2. When your VM is ready use Azure Portal Cloud Shell to install and configure AML Widgets. This step is a temporary workaround.
-The next release will include pre-installed AML Widgets.
+The next release of DSVM will include pre-installed AML Widgets.
 
 ```
 # Logon to your VM
