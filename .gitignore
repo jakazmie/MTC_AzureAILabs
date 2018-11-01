@@ -9,6 +9,7 @@ labels.txt
 *.wav
 *.hd5
 *.pb
+*.pkl
 aerial/
 aerialimages/
 aerialsmall/

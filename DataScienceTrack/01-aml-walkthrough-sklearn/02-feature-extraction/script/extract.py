@@ -78,10 +78,10 @@ def create_bottleneck_features():
     train_images_dir = os.path.join(FLAGS.input_data_dir, 'train')
     valid_images_dir = os.path.join(FLAGS.input_data_dir, 'valid')
 
-    train_generator = ImageGenerator(train_images_dir, vgg16.preprocess_input)
-    valid_generator = ImageGenerator(valid_images_dir, vgg16.preprocess_input)
+    train_generator = ImageGenerator(train_images_dir, resnet50.preprocess_input)
+    valid_generator = ImageGenerator(valid_images_dir, resnet50.preprocess_input)
     
-    featurizer = vgg16.VGG16(
+    featurizer = resnet50.ResNet50(
                 weights = 'imagenet', 
                 input_shape=(224,224,3), 
                 include_top = False,
@@ -124,7 +124,7 @@ FLAGS = tf.app.flags.FLAGS
 
 # Default global parameters
 tf.app.flags.DEFINE_integer('batch_size', 64, "Number of images per batch")
-tf.app.flags.DEFINE_string('input_data_dir', 'aerialsmall', "Folder with training and validation images")
+tf.app.flags.DEFINE_string('input_data_dir', 'aerialtiny', "Folder with training and validation images")
 tf.app.flags.DEFINE_string('output_data_dir', 'bottleneck', "A folder for saving bottleneck features")
 tf.app.flags.DEFINE_string('training_file_name', 'aerial_bottleneck_train_vgg16.h5', "Name of output training file")
 tf.app.flags.DEFINE_string('validation_file_name', 'aerial_bottleneck_valid_vgg16.h5', "Name of output validation file")
@@ -133,8 +133,9 @@ def main(argv=None):
     print("Starting")
     print("Reading training data from:", FLAGS.input_data_dir)
     print("Output bottleneck files will be saved to:", FLAGS.output_data_dir)
+
     os.makedirs(FLAGS.output_data_dir, exist_ok=True)
-   
+
     create_bottleneck_features()
   
 if __name__ == '__main__':
