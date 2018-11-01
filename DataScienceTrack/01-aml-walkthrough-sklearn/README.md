@@ -46,8 +46,7 @@ conda install scikit-image
 conda install h5py
 
 3. Clone the labs
-```
-# Clone the labs in the notebooks folder
+
 cd notebooks
 git clone <repo ULR>
 exit
