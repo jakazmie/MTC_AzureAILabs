@@ -40,13 +40,12 @@ sudo systemctl restart jupyterhub
 
 # Install scikit-image
 conda install scikit-image
-'''
 
 # Install h5py
 conda install h5py
-
+```
 3. Clone the labs
-
+```
 cd notebooks
 git clone <repo ULR>
 exit
