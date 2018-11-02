@@ -23,4 +23,6 @@ test_images/
 DataScientistTrack/02-AML-EndToEndWalkthrough/script
 aml_config/
 datasets/
+bottleneck/
+script/
  
