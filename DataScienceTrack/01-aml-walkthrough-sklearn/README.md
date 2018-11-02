@@ -35,9 +35,6 @@ exit
 conda activate py36
 jupyter nbextension enable --py azureml.train.widgets
 
-# Restart Jupyter Hub
-sudo systemctl restart jupyterhub
-
 # Install scikit-image
 conda install scikit-image
 
