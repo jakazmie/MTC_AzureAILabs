@@ -32,6 +32,7 @@ pip install --upgrade azureml-sdk[notebooks,automl]
 
 # Install AML Jupyter Widgets
 jupyter nbextension install --py azureml.train.widgets
+
 exit
 
 # Enable the widgets for your account
