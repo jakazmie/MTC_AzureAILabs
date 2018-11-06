@@ -26,7 +26,11 @@ ssh <your username>@<vm ip address>
 # Update SDK and install AML Widgets
 sudo -i
 conda activate py36 
+
+# Update AML Python SDK
 pip install --upgrade azureml-sdk[notebooks,automl]
+
+# Install AML Jupyter Widgets
 jupyter nbextension install --py azureml.train.widgets
 exit
 
