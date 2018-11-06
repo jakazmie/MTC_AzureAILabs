@@ -10,7 +10,7 @@ You can use your workstation or Azure Data Science Virtual Machine as your lab e
 
 1. Follow the below link to provision Data Science Virtual Machine for **Ubuntu** . 
    - Create a new resource group for your VM
-   - Use **D4s_v3** or better as a VM type. Although, the labs will run on other configurations this is the minimum configuration we recommend. 
+   - Use **D4s_v3** or better as a VM type. Although, the labs can run on other configurations this is the minimum configuration we recommend. 
    - Choose *username and password* as the authentication type. 
    - Use the default values for all other parameters.
 
