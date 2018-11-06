@@ -1,7 +1,6 @@
 # Azure Machine Learning service Walkthrough
 
-The goal of this series of labs is to introduce key components and features of Azure Machine Learning service. During the labs
-you will go through a full Machine Learning workflow from data preparation, through model training, to model operationalization.
+The goal of this series of labs is to introduce core features of Azure Machine Learning service and demonstrate how AML service can be used to orchestrate machine learning workflows. The labs  walk you through the key phases of a machine learning workflow: from data preparation, through model training, to model operationalization.
 
 
 ## Lab environment set up
@@ -25,7 +24,7 @@ The next release of DSVM will include updated SDK, pre-installed AML Widgets.
 # Logon to your VM
 ssh <your username>@<vm ip address>
 
-# Update SDK and nstall AML Widgets
+# Update SDK and install AML Widgets
 sudo -i
 conda activate py36 
 pip install --upgrade azureml-sdk[notebooks,automl]
