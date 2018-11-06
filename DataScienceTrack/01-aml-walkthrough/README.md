@@ -16,7 +16,7 @@ You can use your workstation or Azure Data Science Virtual Machine as your lab e
 
  https://portal.azure.com/#create/microsoft-dsvm.linux-data-science-vm-ubuntulinuxdsvmubuntu
 
-2. When your VM is ready use Azure Portal Cloud Shell to update AML SDK and install and configure AML Widgets and lab dependencies. This step is a temporary workaround.
+2. When your VM is ready use Azure Portal Cloud Shell to update AML SDK and install and configure AML Widgets and other lab dependencies. This step is a temporary workaround.
 The next release of DSVM will include updated SDK, pre-installed AML Widgets.
 
 ```
