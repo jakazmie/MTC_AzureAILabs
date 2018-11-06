@@ -11,8 +11,12 @@ dependencies:
 - python=3.6.2
 
 - pip:
-    # Required packages for AzureML execution, history, and data preparation.
-  - azureml-defaults
-  - h5py
+  - azureml-train-automl==0.1.68
+  - azureml-telemetry==0.1.68
+  - azureml-defaults==0.1.68
+  - azureml-core==0.1.68
+  - scikit-learn==0.19.1
+  - numpy==1.14.5
+  - h5py==2.8.0
   - pynacl==1.2.1
-- scikit-learn
+  - tensorflow==1.10.0
