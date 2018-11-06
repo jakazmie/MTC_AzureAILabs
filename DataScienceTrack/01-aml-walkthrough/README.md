@@ -1,5 +1,4 @@
-# Azure Machine Learning service Walkthrough
-
+# Introduction to Azure Machine Learning service
 The goal of this series of labs is to introduce core features of Azure Machine Learning service and demonstrate how AML service can be used to orchestrate machine learning workflows. The labs  walk you through the key phases of a machine learning workflow: from data preparation, through model training, to model operationalization.
 
 
