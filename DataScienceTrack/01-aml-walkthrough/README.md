@@ -18,16 +18,17 @@ You can use your workstation or Azure Data Science Virtual Machine as your lab e
 
  https://portal.azure.com/#create/microsoft-dsvm.linux-data-science-vm-ubuntulinuxdsvmubuntu
 
-2. When your VM is ready use Azure Portal Cloud Shell to install and configure AML Widgets and lab dependencies. This step is a temporary workaround.
-The next release of DSVM will include pre-installed AML Widgets and missing libraries..
+2. When your VM is ready use Azure Portal Cloud Shell to update AML SDK and install and configure AML Widgets and lab dependencies. This step is a temporary workaround.
+The next release of DSVM will include updated SDK, pre-installed AML Widgets.
 
 ```
 # Logon to your VM
 ssh <your username>@<vm ip address>
 
-# Install AML Widgets
+# Update SDK and nstall AML Widgets
 sudo -i
 conda activate py36 
+pip install --upgrade azureml-sdk[notebooks,automl]
 jupyter nbextension install --py azureml.train.widgets
 exit
 
