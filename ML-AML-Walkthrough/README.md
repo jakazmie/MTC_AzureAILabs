@@ -30,6 +30,7 @@ After the DSVM is provisioned connect to the pre-installed Jupyter server at:
 
 `https://<your IP address or DNS>:8000`
   
-In Jupyter session open a terminal and clone this repository under the `notebooks` folder.
+In Jupyter open a terminal and clone this repository under the `notebooks` folder.
 
+Follow the instructor who will walk you through the labs.
 
