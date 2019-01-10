@@ -15,7 +15,7 @@ The following development environments are supported:
 - **PyCharm**
 - **Azure Databricks**
 
-In this workshop we will use Linux (Ubuntu) **Azure Data Science Virtual Machine ** as a development environment.
+In this workshop we will use Linux (Ubuntu) **Azure Data Science Virtual Machine** as the lab environment.
 
 The DSVM comes with all the pre-requisities pre-installed. No additional configuration is required.
 
