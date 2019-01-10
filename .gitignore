@@ -28,4 +28,7 @@ script/
 bottleneck_features/
 *.log
 automl_errors.log
- 
+*.yml
+azureml-models
+project
+
