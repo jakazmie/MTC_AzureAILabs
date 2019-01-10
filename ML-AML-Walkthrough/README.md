@@ -15,22 +15,21 @@ The following development environments are supported:
 - **PyCharm**
 - **Azure Databricks**
 
-In this workshop we will use **Azure Notebooks** as a development environment.
+In this workshop we will use Linux (Ubuntu) **Azure Data Science Virtual Machine ** as a development environment.
 
-### To set up Azure Notebooks
+The DSVM comes with all the pre-requisities pre-installed. No additional configuration is required.
 
-1. Navigate to: https://notebooks.azure.com
+### To provision Azure Data Science Virtual Machine
 
-2. Log in with the same credentials you use for Azure Portal.
+Follow the instructions at
 
-3. Navigate to **My Projects** page.
+https://ms.portal.azure.com/#create/microsoft-ads.linux-data-science-vm-ubuntulinuxdsvmubuntu
 
-4. Click on **Upload Github Repo**
 
-5. Configure the form as on the below picture
+After the DSVM is provisioned connect to pre-installed Jupyter server at:
 
-![Azure Notebooks](https://github.com/jakazmie/images-for-hands-on-labs/raw/master/azurenotebooks.png)
-
-6. Click **Import**
+https://<your IP address or DNS>:8000
+  
+In Jupyter session open a terminal and clone this repository under the `notebooks` folder.
 
 
