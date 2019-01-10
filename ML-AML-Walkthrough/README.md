@@ -26,9 +26,9 @@ Follow the instructions at
 https://ms.portal.azure.com/#create/microsoft-ads.linux-data-science-vm-ubuntulinuxdsvmubuntu
 
 
-After the DSVM is provisioned connect to pre-installed Jupyter server at:
+After the DSVM is provisioned connect to the pre-installed Jupyter server at:
 
-https://<your IP address or DNS>:8000
+`https://<your IP address or DNS>:8000`
   
 In Jupyter session open a terminal and clone this repository under the `notebooks` folder.
 
