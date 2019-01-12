@@ -31,4 +31,6 @@ automl_errors.log
 *.yml
 azureml-models
 project
+__pychache__
+_pychache_
 
