@@ -1,4 +1,4 @@
-# Introduction to Azure Machine Learning service
+# Deep Learning on Azure
 This series of labs introduces demonstrates how to utilize Azure Machine Learning service and Azure AI infrastructure to run high 
 performance Deep Learning workflows.
 
