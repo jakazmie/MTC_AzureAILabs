@@ -33,4 +33,5 @@ azureml-models
 project
 __pychache__
 _pychache_
+model_def
 
