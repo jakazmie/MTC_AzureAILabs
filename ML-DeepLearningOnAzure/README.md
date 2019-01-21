@@ -25,14 +25,13 @@ The DSVM comes with all the pre-requisities pre-installed. No additional configu
 
 https://ms.portal.azure.com/#create/microsoft-ads.linux-data-science-vm-ubuntulinuxdsvmubuntu
 
-
-1. After the DSVM is provisioned connect to the pre-installed Jupyter server at:
+2. After the DSVM is provisioned connect to the pre-installed Jupyter server at:
 
 `https://<your IP address or DNS>:8000`
   
-1. In Jupyter open a terminal and clone this repository under the `notebooks` folder.
+3. In Jupyter open a terminal and clone this repository under the `notebooks` folder.
 
-1. If you need to update the DSVM to install/update Python libraries - E.g. Azure ML SDK.
+4. If you need to install/update Python libraries do it in `py36` environment. This is the environment used by the labs.
 ```
 sudo -i
 source activate py36
@@ -41,5 +40,5 @@ exit
 ```
 
 
-1. Follow the instructor who will walk you through the labs.
+5. Follow the instructor who will walk you through the labs.
 
