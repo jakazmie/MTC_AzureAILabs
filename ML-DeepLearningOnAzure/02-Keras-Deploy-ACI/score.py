@@ -12,6 +12,8 @@ from azureml.core import Workspace
 
 def init():
     try:
+        
+        # Create ResNet50 featurizer
         global featurizer
         
         featurizer = resnet50.ResNet50(
@@ -20,6 +22,7 @@ def init():
             include_top = False,
             pooling = 'avg')
         
+        # Load top model
         global model   
 
         model_name = 'aerial_classifier'
