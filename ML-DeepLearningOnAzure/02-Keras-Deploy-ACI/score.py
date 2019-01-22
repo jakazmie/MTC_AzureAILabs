@@ -3,27 +3,32 @@ import os
 import numpy as np
 import random
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+
+from tensorflow.keras.applications import resnet50
+from tensorflow.keras.preprocessing import image
 
 from azureml.core.model import Model
-
-import azureml.contrib.brainwave.models.utils as utils
-from azureml.contrib.brainwave.models import QuantizedResnet50
+from azureml.core import Workspace
 
 def init():
-    # Instantiate ResNet50 featurizer
-    global featurizer
-    
-    # Create ResNet50 
-    model_path = os.path.expanduser('~/models')
-    featurizer = QuantizedResnet50(model_path, is_frozen=True)
+    try:
+        global featurizer
+        
+        featurizer = resnet50.ResNet50(
+            weights = 'imagenet', 
+            input_shape=(224,224,3), 
+            include_top = False,
+            pooling = 'avg')
+        
+        global model   
 
-    # Load the pretrained top
-    global model
-    # retreive the path to the model file using the model name
-    model_path = Model.get_model_path(model_name = 'aerial-classifier-brainwave')
-    #model = load_model(model_path)
-    print(model_path)
+        model_name = 'aerial_classifier'
+        model_path = Model.get_model_path(model_name)
+        model = tf.keras.models.load_model(model_path)
+        
+    except Exception as e:
+        print('Exception during init: ', str(e))
+
   
 
 def run(raw_data):
@@ -31,21 +36,11 @@ def run(raw_data):
         # convert json to numpy array
         images = np.array(json.loads(raw_data)['data'])
         # normalize as required by ResNet50
-        
-        predictions = str(images.shape)
-        
-        # Call the top
-        # predictions = model.predict(features)
-        # Add string labels
-        #labels = ["Barren",
-        #          "Cultivated",
-        #          "Developed",
-        #          "Forest",
-        #          "Herbaceous",
-        #          "Shrub"]
-        
-        # Get string labels for predictions
-        #string_predictions = [labels[pred] for pred in predictions]
+        images = resnet50.preprocess_input(images)
+        # Extract bottleneck featurs
+        features = featurizer.predict(images)
+        # Make prediction
+        predictions = model.predict(features)
         
     except Exception as e:
         result = str(e)
@@ -53,4 +48,4 @@ def run(raw_data):
     
     # Return both numeric and string predictions
     # return json.dumps({"predictions": predictions.tolist(), "labels": string_predictions})
-    return json.dumps({"predictions": predictions})
+    return json.dumps({"predictions": predictions.tolist()})
