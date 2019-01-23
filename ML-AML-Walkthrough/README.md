@@ -31,6 +31,10 @@ https://ms.portal.azure.com/#create/microsoft-ads.linux-data-science-vm-ubuntuli
 `https://<your IP address or DNS>:8000`
   
 1. In Jupyter open a terminal and clone this repository under the `notebooks` folder.
+```
+cd notebooks
+git clone https://github.com/jakazmie/MTC_AzureAILabs.git
+```
 
 1. If you need to update the DSVM to install/update Python libraries - E.g. Azure ML SDK.
 ```
