@@ -4,7 +4,7 @@
 ## Install ksonnet version 0.13.1 or later
 
 ## Install Kubeflow
-1. Download `kfctl.sh`
+1. Download Kubeflow CLI utility - `kfctl.sh`.
 ```
 KUBEFLOW_SRC=~/kubeflowlabs
 mkdir ${KUBEFLOW_SRC}
