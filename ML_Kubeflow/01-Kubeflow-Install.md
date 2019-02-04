@@ -8,7 +8,7 @@ az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION>
 
 Create the GPU AKS cluster
 ```
-az aks create --node-vm-size Standard_NC6 --resource-group <RESOURCE_GROUP_NAME> --name <NAME> 
+az aks create --node-vm-size Standard_DS4_v2 --resource-group <RESOURCE_GROUP_NAME> --name <NAME> 
 --node-count 3 --kubernetes-version 1.11.6 --location <LOCATION> --generate-ssh-keys
 ```
 Get the `kubeconfig` file.
