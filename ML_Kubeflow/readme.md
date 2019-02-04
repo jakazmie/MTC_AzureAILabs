@@ -19,6 +19,14 @@ az aks get-credentials --name <NAME> --resource-group <RESOURCE_GROUP_NAME>
 ```
 
 ## Install ksonnet version 0.13.1 or later
+```
+cd
+mkdir ksonnet
+cd ksonnet
+wget https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_linux_amd64.tar.gz
+tar -xvf ks_0.13.1_linux_amd64.tar.gz
+export PATH=$PATH:~/ksonnet/ks_0.13.1_linux_amd64/
+```
 
 ## Install Kubeflow
 1. Download Kubeflow CLI utility - `kfctl.sh`.
