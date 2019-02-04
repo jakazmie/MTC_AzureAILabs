@@ -1,6 +1,12 @@
 # Kubeflow on Azure Walkthrough
 
 ## Create AKS 
+```
+az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION>
+az aks create --node-vm-size Standard_NC6 --resource-group <RESOURCE_GROUP_NAME> --name <NAME> 
+--node-count 3 --kubernetes-version 1.11.6 --location <LOCATION> --generate-ssh-keys
+```
+
 ## Install ksonnet version 0.13.1 or later
 
 ## Install Kubeflow
