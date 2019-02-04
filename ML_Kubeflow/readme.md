@@ -1,10 +1,21 @@
 # Kubeflow on Azure Walkthrough
 
+Use Azure Cloud Shell to execute the following commands.
+
 ## Create AKS 
+Create a resource group to host AKS.
 ```
 az group create --name <RESOURCE_GROUP_NAME> --location <LOCATION>
+```
+
+Create the GPU AKS cluster
+```
 az aks create --node-vm-size Standard_NC6 --resource-group <RESOURCE_GROUP_NAME> --name <NAME> 
 --node-count 3 --kubernetes-version 1.11.6 --location <LOCATION> --generate-ssh-keys
+```
+Get the `kubeconfig` file.
+```
+az aks get-credentials --name <NAME> --resource-group <RESOURCE_GROUP_NAME>
 ```
 
 ## Install ksonnet version 0.13.1 or later
