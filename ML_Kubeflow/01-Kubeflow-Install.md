@@ -23,7 +23,7 @@ mkdir ksonnet
 cd ksonnet
 wget https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_linux_amd64.tar.gz
 tar -xvf ks_0.13.1_linux_amd64.tar.gz
-export PATH=$PATH:~/ksonnet/ks_0.13.1_linux_amd64/
+ln -s ~/ksonnet/ks_0.13.1_linux_amd64/ks /usr/local/bin/ks
 ```
 
 ## Install Kubeflow
