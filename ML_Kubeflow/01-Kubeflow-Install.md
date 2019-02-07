@@ -29,7 +29,7 @@ ln -s ~/ksonnet/ks_0.13.1_linux_amd64/ks /usr/local/bin/ks
 ## Install Kubeflow
 1. Download Kubeflow CLI utility - `kfctl.sh`.
 ```
-KUBEFLOW_SRC=~/kubeflowlabs
+KUBEFLOW_SRC=~/kubeflow
 mkdir ${KUBEFLOW_SRC}
 cd ${KUBEFLOW_SRC}
 export KUBEFLOW_TAG=v0.4.1
